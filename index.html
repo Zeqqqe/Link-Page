@@ -12,6 +12,8 @@
             font-family: 'Inter', sans-serif;
             /* Prevent horizontal scrolling on mobile from the blobs */
             overflow-x: hidden;
+            background-color: #0b0c0d;
+            color: #E5E7EB;
         }
         
         /* Custom CSS for the glowing text effect */
@@ -35,30 +37,50 @@
 
         .blob-1 {
             background: #5865F2; /* Discord blurple */
-            width: 400px;
-            height: 400px;
-            top: -100px;
-            left: -100px;
+            width: 200px; /* Reduced from 250px */
+            height: 200px; /* Reduced from 250px */
+            top: -50px;
+            left: -50px;
             animation-duration: 22s;
         }
 
         .blob-2 {
             background: #fc2a7e; /* GitHub-like gray */
-            width: 350px;
-            height: 350px;
-            bottom: -50px;
-            right: -50px;
+            width: 150px; /* Reduced from 200px */
+            height: 150px; /* Reduced from 200px */
+            bottom: -20px;
+            right: -20px;
             animation-duration: 18s;
         }
 
         .blob-3 {
             background: #406de8; /* New Bluesky blue */
-            width: 300px;
-            height: 300px;
+            width: 100px; /* Reduced from 150px */
+            height: 100px; /* Reduced from 150px */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             animation-duration: 25s;
+        }
+
+        /* Adjust blob sizes for larger screens (sm breakpoint and up) */
+        @media (min-width: 640px) {
+            .blob-1 {
+                width: 350px; /* Reduced from 400px */
+                height: 350px; /* Reduced from 400px */
+                top: -100px;
+                left: -100px;
+            }
+            .blob-2 {
+                width: 300px; /* Reduced from 350px */
+                height: 300px; /* Reduced from 350px */
+                bottom: -50px;
+                right: -50px;
+            }
+            .blob-3 {
+                width: 250px; /* Reduced from 300px */
+                height: 250px; /* Reduced from 300px */
+            }
         }
 
         @keyframes fadeAndMove {
@@ -84,6 +106,26 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
+        }
+
+        /* Custom styles for the music button */
+        .music-toggle-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 50;
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 10px rgba(15, 23, 42, 0.5);
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #4B5563;
+        }
+        .music-toggle-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(15, 23, 42, 0.8);
+        }
+        .music-toggle-btn:active {
+            transform: scale(0.95);
         }
     </style>
     
@@ -111,11 +153,11 @@
         <div class="bg-[#121417] rounded-lg shadow-2xl p-8 max-w-sm w-full transition-all duration-300">
 
             <!-- Profile Image -->
-            <div class="flex-shrink-0 mx-auto mb-4">
+            <div class="flex flex-shrink-0 justify-center mb-4 mx-auto">
                 <img 
                     src="https://media.discordapp.net/stickers/1394832827450654811.png?size=160&name=my+apolocheese" 
                     alt="Profile Picture" 
-                    class="w-32 h-32 rounded-full border-4 border-slate-700 shadow-md flex-shrink-0 object-cover"
+                    class="w-32 h-32 rounded-full border-4 border-slate-700 shadow-md"
                 />
             </div>
             
@@ -131,28 +173,28 @@
             <div class="space-y-4">
                 
                 <!-- Bluesky Link with persistent and glowing effect -->
-                <a href="https://bsky.app/profile/zeqqe.dev" target="_blank" rel="noopener noreferrer" 
+                <a href="https://bsky.zeqqe.dev/profile/send" target="_blank" rel="noopener noreferrer" 
                    class="group flex items-center justify-center bg-[#406de8] hover:bg-[#5C89F3] text-white font-semibold py-3 px-6 rounded-lg shadow-md shadow-[#406de8]/50 transition-all duration-200 w-full focus:outline-none focus:ring-2 focus:ring-[#406de8] focus:ring-opacity-50 hover:shadow-xl hover:shadow-[#406de8]/75 hover:scale-[1.05]">
                     <span class="flex-grow text-center">Bluesky</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link ml-2 flex-shrink-0"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
 
                 <!-- Discord Link with persistent and glowing effect -->
-                <a href="https://discord.com/users/1265057708587880458" target="_blank" rel="noopener noreferrer" 
+                <a href="https://discord.zeqqe.dev/profile" target="_blank" rel="noopener noreferrer" 
                    class="group flex items-center justify-center bg-[#5865F2] hover:bg-[#4d56d8] text-white font-semibold py-3 px-6 rounded-lg shadow-md shadow-[#5865F2]/50 transition-all duration-200 w-full focus:outline-none focus:ring-2 focus:ring-[#5865F2] focus:ring-opacity-50 hover:shadow-xl hover:shadow-[#5865F2]/75 hover:scale-[1.05]">
                     <span class="flex-grow text-center">Discord</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link ml-2 flex-shrink-0"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
 
                 <!-- GitHub Link with persistent and glowing effect -->
-                <a href="https://github.com/Zeqqqe" target="_blank" rel="noopener noreferrer" 
+                <a href="https://github.zeqqe.dev/profile" target="_blank" rel="noopener noreferrer" 
                    class="group flex items-center justify-center bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg shadow-md shadow-gray-900/50 transition-all duration-200 w-full focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50 hover:shadow-xl hover:shadow-gray-900/75 hover:scale-[1.05]">
                     <span class="flex-grow text-center">GitHub</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link ml-2 flex-shrink-0"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
 
                 <!-- Email Link with persistent and glowing effect -->
-                <a href="mailto:Contact@zeqqe.dev"
+                <a href="mailto:contact@zeqqe.dev"
                    class="group flex items-center justify-center bg-[#E8415F] hover:bg-[#F0708D] text-white font-semibold py-3 px-6 rounded-lg shadow-md shadow-[#E8415F]/50 transition-all duration-200 w-full focus:outline-none focus:ring-2 focus:ring-[#E8415F] focus:ring-opacity-50 hover:shadow-xl hover:shadow-[#E8415F]/75 hover:scale-[1.05]">
                     <span class="flex-grow text-center">Email</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link ml-2 flex-shrink-0"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
@@ -169,7 +211,7 @@
 
     <!-- Music Control Button -->
     <div class="fixed bottom-4 right-4 z-50">
-        <button id="music-toggle" class="bg-gray-800 text-gray-200 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50" style="animation: pulse-btn 2s infinite cubic-bezier(0.4, 0, 0.6, 1);">
+        <button id="music-toggle" class="music-toggle-btn p-3 rounded-full text-white shadow-xl focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50" style="animation: pulse-btn 2s infinite cubic-bezier(0.4, 0, 0.6, 1);">
             <!-- Music note icon for when music is playing -->
             <svg id="music-icon-play" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M9 18V5l12-2v13" />
@@ -194,29 +236,34 @@
             const pauseIcon = document.getElementById('music-icon-pause');
             const audio = document.getElementById('background-music');
 
-            let isPlaying = false;
+            // Add a check to ensure the audio element exists
+            if (audio) {
+                let isPlaying = false;
 
-            // Add a click listener to the button
-            musicToggleBtn.addEventListener('click', () => {
-                if (isPlaying) {
-                    audio.pause();
-                    isPlaying = false;
-                    pauseIcon.classList.remove('hidden');
-                    playIcon.classList.add('hidden');
-                    console.log("Music paused.");
-                } else {
-                    audio.play();
+                // Add a click listener to the button
+                musicToggleBtn.addEventListener('click', () => {
+                    if (isPlaying) {
+                        audio.pause();
+                        isPlaying = false;
+                        pauseIcon.classList.remove('hidden');
+                        playIcon.classList.add('hidden');
+                        console.log("Music paused.");
+                    } else {
+                        audio.play();
+                        isPlaying = true;
+                        playIcon.classList.remove('hidden');
+                        pauseIcon.classList.add('hidden');
+                        console.log("Music playing.");
+                    }
+                });
+                // Initial state: show pause icon if music is already playing
+                if (!audio.paused) {
                     isPlaying = true;
                     playIcon.classList.remove('hidden');
                     pauseIcon.classList.add('hidden');
-                    console.log("Music playing.");
                 }
-            });
-            // Initial state: show pause icon if music is already playing
-            if (!audio.paused) {
-                isPlaying = true;
-                playIcon.classList.remove('hidden');
-                pauseIcon.classList.add('hidden');
+            } else {
+                console.error("Audio element with ID 'background-music' not found.");
             }
         }
     </script>
